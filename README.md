@@ -56,15 +56,27 @@ https://koki0702.github.io/dezero-book/
 ## 実行方法
 
 本書で説明するPythonファイルは、主に[steps](/steps)ファルダにあります。
-実行するためには、下記のとおりPythonコマンドを実行します（どのディレクトリからでも実行できます）。
+最初にリポジトリのルートで、[uv](https://docs.astral.sh/uv/) を使って環境を作成します。
 
+```bash
+uv sync
 ```
-$ python steps/step01.py
-$ python steps/step02.py
 
-$ cd steps
-$ python step31.py
+各ファイルは、リポジトリのルートから `uv run python3` で実行できます。
+
+```bash
+uv run python3 steps/step01.py
+uv run python3 steps/step02.py
 ```
+
+Notebook を利用する場合は、次のコマンドで JupyterLab を起動してください。
+
+```bash
+uv run jupyter lab
+```
+
+GPU 機能を利用する場合は、使用する CUDA バージョンに対応した CuPy を別途
+追加してください（例: `uv add cupy-cuda12x`）。
 
 ## デモ
 
