@@ -2,6 +2,8 @@
 <a href="https://www.amazon.co.jp/dp/4873119065/ref=cm_sw_r_tw_dp_U_x_KiA1Eb39SW14Q"><img src="https://raw.githubusercontent.com/oreilly-japan/deep-learning-from-scratch-3/images/deep-learning-from-scratch-3.png" height="250"></a>
 </p>
 
+このリポジトリは『ゼロから作るDeep Learning ❸』のサンプルコードに、各ステップを学習・実行できる [Jupyter Notebook](notebooks/) を追加したものです。
+
 ## 本書概要
 
 本書では「DeZero」というディープラーニングのフレームワークを作ります。DeZeroは本書オリジナルのフレームワークです。最小限のコードで、フレームワークのモダンな機能を実現します。本書では、この小さな——それでいて十分にパワフルな——フレームワークを、全部で60のステップで完成させます。それによって、PyTorch、TensorFlow、Chainerなどの現代のフレームワークに通じる深い知識を養います。
@@ -37,6 +39,7 @@ https://koki0702.github.io/dezero-book/
 |[dezero](/dezero)       |DeZeroのソースコード|
 |[examples](/examples)     |DeZeroを使った実装例|
 |[steps](/steps)|各stepファイル（step01.py ~ step60.py）|
+|[notebooks](notebooks/)|各ステップを学習・実行するJupyter Notebook|
 |[tests](/tests)|DeZeroのユニットテスト|
 
 
