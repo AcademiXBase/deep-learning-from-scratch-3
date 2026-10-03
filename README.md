@@ -56,15 +56,47 @@ https://koki0702.github.io/dezero-book/
 ## 実行方法
 
 本書で説明するPythonファイルは、主に[steps](/steps)ファルダにあります。
-実行するためには、下記のとおりPythonコマンドを実行します（どのディレクトリからでも実行できます）。
+最初にリポジトリのルートで、[uv](https://docs.astral.sh/uv/) を使って環境を作成します。
 
+```bash
+uv sync
 ```
-$ python steps/step01.py
-$ python steps/step02.py
 
-$ cd steps
-$ python step31.py
+各ファイルは、リポジトリのルートから `uv run python3` で実行できます。
+
+```bash
+uv run python3 steps/step01.py
+uv run python3 steps/step02.py
 ```
+
+Notebook を利用する場合は、次のコマンドで JupyterLab を起動してください。
+
+```bash
+uv run jupyter lab
+```
+
+CuPy 13 系（`cupy-cuda12x`）と必要な CUDA 12.9 ライブラリも `uv sync` で
+インストールされます。GPU 機能を利用するには、対応する NVIDIA GPU と
+ドライバーが必要です。システムへの CUDA Toolkit の別途インストールは不要です。
+CuPy は、既存の NumPy 1.26 と互換性のある 13 系に固定しています。
+
+`notebooks/stage5_step52-56.ipynb` は、GPU の確認セルで uv 環境内の CUDA
+共有ライブラリを直接読み込むため、次の検索パス設定なしで実行できます。
+`libnvrtc.so.12` の読み込みエラーが出た後は、修正済みの Notebook を開き、
+カーネルを再起動して上から実行してください。
+
+Linux / WSL でほかの Notebook やスクリプトを実行する場合は、CuPy 13 系が
+CUDA 共有ライブラリを見つけられるよう、リポジトリ直下で次の設定を行ってから
+JupyterLab を起動してください。
+起動済みの場合は、JupyterLab 自体を終了してこのコマンドで起動し直してください。
+
+```bash
+CUDA_LIBRARY_PATH="$(uv run python3 -c 'import site; from pathlib import Path; print(":".join(str(p) for base in site.getsitepackages() for p in sorted((Path(base) / "nvidia").glob("*/lib"))))')"
+export LD_LIBRARY_PATH="$CUDA_LIBRARY_PATH${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+uv run jupyter lab
+```
+
+同じターミナルから `uv run python3 steps/step52.py` などのスクリプトも実行できます。
 
 ## デモ
 
